@@ -4,8 +4,8 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
+    nvf = {
+      url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -27,7 +27,7 @@
   outputs = {
     self,
     nixpkgs,
-    nixvim,
+    nvf,
     home-manager,
     treefmt-nix,
     spicetify-nix,
@@ -50,7 +50,7 @@
   in {
     inherit lib;
     nixosModules.default = import ./modules/nixos;
-    homeManagerModules.default = import ./modules/home-manager;
+    #homeManagerModules.default = import ./modules/home-manager;
 
     overlays = import ./overlays {inherit inputs;};
 
@@ -60,7 +60,7 @@
 
     nixosConfigurations = {
       pugpc = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/configuration.nix
           home-manager.nixosModules.home-manager
@@ -68,13 +68,8 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              sharedModules = [
-                nixvim.homeManagerModules.nixvim
-                spicetify-nix.homeManagerModules.spicetify
-                stylix.homeModules.stylix
-              ];
               backupFileExtension = "bak";
-              extraSpecialArgs = {inherit inputs;};
+              extraSpecialArgs = {inherit inputs outputs;};
               users.pug = ./home-manager/home.nix;
             };
           }

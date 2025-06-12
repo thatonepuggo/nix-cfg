@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   stylix,
@@ -10,6 +11,8 @@
     size = 24;
   };
 in {
+  imports = [ inputs.stylix.homeModules.stylix ];
+
   home.packages = [
     # extra fonts #
     pkgs.noto-fonts
@@ -51,7 +54,7 @@ in {
 
       monospace = {
         package = pkgs.nerd-fonts.ubuntu-mono;
-        name = "Ubuntu Mono Nerd Font Mono";
+        name = "UbuntuMono Nerd Font Mono";
       };
 
       emoji = {

@@ -11,11 +11,11 @@
     ./ghostty.nix
     ./git.nix
     ./hyprland.nix
-    ./nixvim.nix
     ./rofi.nix
     ./spicetify.nix
     ./themes.nix
     ./vesktop.nix
+    ./vim.nix
     ./waybar.nix
     ./zsh.nix
   ];
@@ -40,6 +40,9 @@
       hyprpicker
       grimblast
       hyprpolkitagent
+
+      # langs
+      lua
 
       # games
       doomrunner
