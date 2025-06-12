@@ -1,0 +1,64 @@
+{
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    # include modules
+    ./boot.nix
+    ./mount.nix
+    ./users.nix
+    ./locale.nix
+    ./env.nix
+    ./nvidia.nix
+    ./wayland.nix
+    ./sound.nix
+    ./steam.nix
+  ];
+
+  # Enable networking
+  networking.networkmanager.enable = true;
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+
+  # enable flakes
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
+  nixpkgs.config = {
+    allowUnfree = true;
+    chromium.enableWideVine = true;
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    options = "--delete-older-than 7d";
+    persistent = true;
+  };
+
+  # packages
+
+  environment.systemPackages = with pkgs; [
+    curl
+    wget
+    file
+    killall
+
+    wl-clipboard
+    wl-clip-persist
+    cliphist
+    libnotify
+  ];
+
+  programs.nh.enable = true;
+  programs.hyprland.enable = true;
+
+  # first version installed on this system
+  system.stateVersion = "25.05";
+}
