@@ -40,6 +40,10 @@
       hyprpicker
       grimblast
       hyprpolkitagent
+
+      # games
+      doomrunner
+      gzdoom
     ];
 
     # do not edit

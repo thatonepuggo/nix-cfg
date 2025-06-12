@@ -18,6 +18,7 @@ in {
     pkgs.nerd-fonts.fira-code
     pkgs.nerd-fonts.ubuntu
     pkgs.nerd-fonts.ubuntu-mono
+    pkgs.nerd-fonts.iosevka
     pkgs.nerd-fonts.liberation
 
     # ms fonts
@@ -49,8 +50,8 @@ in {
       };
 
       monospace = {
-        package = pkgs.nerd-fonts.iosevka;
-        name = "Iosevka Nerd Font Mono";
+        package = pkgs.nerd-fonts.ubuntu-mono;
+        name = "Ubuntu Mono Nerd Font Mono";
       };
 
       emoji = {
