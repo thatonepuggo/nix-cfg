@@ -47,6 +47,7 @@
   environment.systemPackages = with pkgs; [
     curl
     wget
+    git
     file
     killall
 
@@ -56,6 +57,7 @@
     libnotify
   ];
 
+  programs.zsh.enable = true;
   programs.nh.enable = true;
   programs.hyprland.enable = true;
 

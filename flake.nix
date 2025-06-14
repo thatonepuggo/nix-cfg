@@ -4,6 +4,16 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nvf = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,65 +26,23 @@
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
 
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-
-    stylix = {
-      url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    stylix.url = "github:danth/stylix";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nvf,
-    home-manager,
-    treefmt-nix,
-    spicetify-nix,
-    stylix,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
+  outputs = inputs:
+    with (import ./myLib inputs); {
+      devShells = eachSystem (pkgs: import ./shell.nix {inherit pkgs;});
+      formatter = eachSystem (pkgs: pkgs.alejandra);
 
-    lib = nixpkgs.lib // home-manager.lib;
-
-    systems = [
-      "aarch64-linux"
-      "i686-linux"
-      "x86_64-linux"
-    ];
-
-    eachSystem = f: lib.genAttrs systems (system: f nixpkgs.legacyPackages.${system});
-
-    #treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
-  in {
-    inherit lib;
-    nixosModules.default = import ./modules/nixos;
-    #homeManagerModules.default = import ./modules/home-manager;
-
-    overlays = import ./overlays {inherit inputs;};
-
-    packages = eachSystem (pkgs: import ./pkgs { inherit pkgs; });
-    devShells = eachSystem (pkgs: import ./shell.nix { inherit pkgs; });
-    formatter = eachSystem (pkgs: pkgs.alejandra);
-
-    nixosConfigurations = {
-      pugpc = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-          ./nixos/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              backupFileExtension = "bak";
-              extraSpecialArgs = {inherit inputs outputs;};
-              users.pug = ./home-manager/home.nix;
-            };
-          }
-        ];
+      nixosConfigurations = {
+        pugpc = mkSystem ./hosts/pugpc/nixos;
       };
+
+      homeConfigurations = {
+        "pug@pugpc" = mkHome "x86_64-linux" ./hosts/pugpc/home;
+      };
+
+      nixosModules.default = import ./modules/nixos;
+      homeManagerModules.default = import ./modules/home-manager;
     };
-  };
 }

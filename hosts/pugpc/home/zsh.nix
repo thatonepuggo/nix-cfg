@@ -17,7 +17,7 @@
     };
 
     shellAliases = {
-      ls = "ls -F --color=auto";
+      ls = "eza -F --color=auto";
       ll = "ls -lh";
       lt = "ls -hSs -1";
 

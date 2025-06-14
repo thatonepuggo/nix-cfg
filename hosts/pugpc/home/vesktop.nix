@@ -1,10 +1,9 @@
 {
   config,
   pkgs,
+  myLib,
   ...
-}: let
-  myUtils = import ../myUtils.nix;
-in {
+}: {
   programs.vesktop = {
     enable = true;
 
@@ -50,7 +49,7 @@ in {
         RelationshipNotifier.enabled = true;
         ServerListIndicators = {
           enabled = true;
-          mode = myUtils.bitShiftLeft 1 0; # only servers
+          mode = myLib.bitShiftLeft 1 0; # only servers
         };
         SilentTyping.enabled = true;
         SpotifyControls.enabled = true;

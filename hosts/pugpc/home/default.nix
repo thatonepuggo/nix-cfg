@@ -1,16 +1,15 @@
 {
-  inputs,
-  config,
   lib,
   pkgs,
   ...
 }: rec {
   imports = [
-    ./chromium.nix
+    ./browser.nix
     ./dunst.nix
     ./ghostty.nix
     ./git.nix
     ./hyprland.nix
+    ./obs.nix
     ./rofi.nix
     ./spicetify.nix
     ./themes.nix
@@ -40,6 +39,15 @@
       hyprpicker
       grimblast
       hyprpolkitagent
+      pavucontrol
+      
+      # gui
+      mpv
+      vlc
+      chatterino2
+
+      # alternatives
+      eza
 
       # langs
       lua
