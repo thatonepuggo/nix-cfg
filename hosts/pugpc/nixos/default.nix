@@ -49,11 +49,20 @@
     wget
     git
     file
-    killall
+
+    kdePackages.qtsvg
+    kdePackages.kio-fuse
+    kdePackages.kio-extras
+    kdePackages.dolphin
+    kdePackages.ark
+
+    zip
+    unzip
 
     wl-clipboard
     wl-clip-persist
     cliphist
+
     libnotify
   ];
 
