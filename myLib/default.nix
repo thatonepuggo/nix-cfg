@@ -40,7 +40,7 @@ in rec {
         inputs.lix-module.nixosModules.default
       ];
     };
-  
+
   mkHome = sys: config:
     inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = pkgsFor sys;

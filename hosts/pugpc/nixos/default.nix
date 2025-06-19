@@ -53,8 +53,8 @@
     kdePackages.qtsvg
     kdePackages.kio-fuse
     kdePackages.kio-extras
-    kdePackages.dolphin
-    kdePackages.ark
+
+    tigervnc
 
     zip
     unzip

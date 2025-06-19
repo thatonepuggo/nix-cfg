@@ -29,6 +29,7 @@
       cowsay
       blahaj
       lolcat
+      figlet
       fastfetch
       cava
 
@@ -36,18 +37,16 @@
       btop
 
       # tools
-      hyprpicker
-      grimblast
-      hyprpolkitagent
       pavucontrol
-      
+      cloc
+
       # gui
       mpv
       vlc
       chatterino2
       (prismlauncher.override {
         # Add binary required by some mod
-        additionalPrograms = [ ffmpeg ];
+        additionalPrograms = [ffmpeg];
 
         # Change Java runtimes available to Prism Launcher
         jdks = [
@@ -58,16 +57,22 @@
         ];
       })
       filezilla
+      kdePackages.dolphin
+      kdePackages.ark
 
       # alternatives
       eza
 
       # langs
       lua
+      gcc
+      python3
+      go
 
       # games
       doomrunner
       gzdoom
+      luanti
     ];
 
     # do not edit

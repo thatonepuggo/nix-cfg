@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  lib,
   ...
 }: {
   programs.floorp = {
@@ -12,24 +13,28 @@
       extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
         # nekocap # waiting for issue to get accepted
         bitwarden
-        # frankerfacez # "nonfree extension" even though its under apache license
+        (frankerfacez.override { meta.license = lib.licenses.asl20; }) # "nonfree extension" even though its under apache license
         sponsorblock
         stylus
         ublock-origin
         violentmonkey
+        reddit-enhancement-suite
       ];
 
-      bookmarks.settings = let 
-        mkBookmark = name: url: { inherit name url; };
-        mkKeyword = name: keyword: url: { inherit name keyword url; };
-        mkFolder = name: bookmarks: { inherit name bookmarks; };
-        mkToolbar = bookmarks: { inherit bookmarks; toolbar = true; };
+      bookmarks.settings = let
+        mkBookmark = name: url: {inherit name url;};
+        mkKeyword = name: keyword: url: {inherit name keyword url;};
+        mkFolder = name: bookmarks: {inherit name bookmarks;};
+        mkToolbar = bookmarks: {
+          inherit bookmarks;
+          toolbar = true;
+        };
       in [
         (mkToolbar [
           (mkBookmark "YouTube" "https://youtube.com")
 
           (mkFolder "nix resources" [
-            (mkKeyword 
+            (mkKeyword
               "nixos packages"
               "nixpkgs"
               "https://search.nixos.org/packages?channel=unstable&query=%s")
@@ -43,45 +48,66 @@
         ])
       ];
       bookmarks.force = true;
-      
+
       search = {
         engines = {
           "Nix Packages" = {
-            urls = [{
-              template = "https://search.nixos.org/packages";
-              params = [
-                { name = "type"; value = "packages"; }
-                { name = "query"; value = "{searchTerms}"; }
-              ];
-            }];
+            urls = [
+              {
+                template = "https://search.nixos.org/packages";
+                params = [
+                  {
+                    name = "type";
+                    value = "packages";
+                  }
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
 
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            definedAliases = [ "@np" ];
+            definedAliases = ["@np"];
           };
 
           "Nix Options" = {
-            urls = [{
-              template = "https://search.nixos.org/options";
-              params = [
-                { name = "type"; value = "packages"; }
-                { name = "query"; value = "{searchTerms}"; }
-              ];
-            }];
+            urls = [
+              {
+                template = "https://search.nixos.org/options";
+                params = [
+                  {
+                    name = "type";
+                    value = "packages";
+                  }
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
 
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            definedAliases = [ "@no" ];
+            definedAliases = ["@no"];
           };
 
           "Home Manager Options" = {
-            urls = [{
-              template = "https://home-manager-options.extranix.com/";
-              params = [
-                { name = "query"; value = "{searchTerms}"; }
-              ];
-            }];
+            urls = [
+              {
+                template = "https://home-manager-options.extranix.com/";
+                params = [
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
 
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            definedAliases = [ "@hm" ];
+            definedAliases = ["@hm"];
           };
         };
 
@@ -107,13 +133,13 @@
         "browser.bookmarks.addedImportButton" = false;
 
         # extensions
-        "extensions.autoDisableScopes" = 0; 
+        "extensions.autoDisableScopes" = 0;
 
         # password manager
         "signon.rememberSignons" = false;
         "signon.autofillForms" = false;
-        
-        # behavior 
+
+        # behavior
         "general.smoothScroll.lines.durationMaxMS" = smoothScrollDuration;
         "general.smoothScroll.lines.durationMinMS" = smoothScrollDuration;
         "general.smoothScroll.mouseWheel.durationMaxMS" = smoothScrollDuration;
@@ -127,7 +153,6 @@
         "general.smoothScroll.scrollbars.durationMaxMS" = smoothScrollDuration;
         "general.smoothScroll.scrollbars.durationMinMS" = smoothScrollDuration;
       };
-      
 
       userChrome = ''
         @-moz-document url(chrome://browser/content/browser.xhtml) {
@@ -136,7 +161,7 @@
           toolbarbutton#sidebar-reverse-position-toolbar,
           toolbarbutton#sidebar-button,
           toolbarbutton#firefox-view-button,
-          
+
           /* accounts */
           toolbarbutton#profile-manager,
 

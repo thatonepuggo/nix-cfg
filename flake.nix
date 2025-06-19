@@ -27,6 +27,11 @@
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
 
     stylix.url = "github:danth/stylix";
+
+    nix-your-shell = {
+      url = "github:MercuryTechnologies/nix-your-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:

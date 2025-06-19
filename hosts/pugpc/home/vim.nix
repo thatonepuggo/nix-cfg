@@ -55,11 +55,12 @@
       languages = {
         enableTreesitter = true;
 
-        nix.enable = true;
-        lua.enable = true;
-        ts.enable = true;
-        rust.enable = true;
         clang.enable = true;
+        go.enable = true;
+        lua.enable = true;
+        nix.enable = true;
+        rust.enable = true;
+        ts.enable = true;
       };
     };
   };

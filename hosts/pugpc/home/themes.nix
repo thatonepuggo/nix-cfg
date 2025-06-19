@@ -5,7 +5,7 @@
 }: let
   cursorPkg = pkgs.buildEnv {
     name = "combined-cursors";
-    paths = [ pkgs.rose-pine-cursor pkgs.rose-pine-hyprcursor ];
+    paths = [pkgs.rose-pine-cursor pkgs.rose-pine-hyprcursor];
 
     postBuild = ''
       mkdir $out/share/icons/RosePineCursor/
@@ -20,7 +20,7 @@
       cp $out/share/icons/BreezeX-RosePine-Linux/cursor.theme $out/share/icons/RosePineCursor
       cp $out/share/icons/BreezeX-RosePine-Linux/index.theme $out/share/icons/RosePineCursor
 
-      # unlink 
+      # unlink
       unlink $out/share/icons/BreezeX-RosePine-Linux
       unlink $out/share/icons/BreezeX-RosePineDawn-Linux
       unlink $out/share/icons/rose-pine-hyprcursor
@@ -64,8 +64,8 @@ in {
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-    
-    targets.floorp.profileNames = [ "user" ];
+
+    targets.floorp.profileNames = ["user"];
 
     fonts = {
       serif = {
@@ -74,13 +74,13 @@ in {
       };
 
       sansSerif = {
-        package = pkgs.nerd-fonts.ubuntu;
-        name = "Ubuntu Nerd Font";
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans";
       };
 
       monospace = {
-        package = pkgs.nerd-fonts.ubuntu-mono;
-        name = "UbuntuMono Nerd Font Mono";
+        package = pkgs.nerd-fonts.iosevka;
+        name = "Iosevka Nerd Font";
       };
 
       emoji = {

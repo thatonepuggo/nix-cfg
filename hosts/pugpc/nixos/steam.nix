@@ -1,14 +1,12 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.steam = {
     enable = true;
 
     package = pkgs.steam.override {
-      extraPkgs = (pkgs: with pkgs; [    
-        pkgsi686Linux.gperftools
-      ]);
+      extraPkgs = pkgs:
+        with pkgs; [
+          pkgsi686Linux.gperftools
+        ];
 
       extraProfile = let
         gperfPkg = toString pkgs.pkgsi686Linux.gperftools;

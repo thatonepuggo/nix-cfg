@@ -2,7 +2,36 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  custom-screenshooter = pkgs.writeShellScriptBin "screenshooter" ''
+    #!/usr/bin/env bash
+
+    case "$1" in
+    area)
+      wayfreeze \
+        --after-freeze-cmd 'grim -g "$(slurp)" - | wl-copy; pkill wayfreeze'
+    ;;
+    output)
+      grim -o "$(hyprctl activeworkspace | grep -oP 'on monitor \K[^:]+')" - | wl-copy
+    ;;
+    esac
+  '';
+in {
+  home.packages = with pkgs;
+    [
+      hyprpolkitagent
+      hyprpicker
+
+      wayfreeze
+      grim
+      slurp
+
+      jq
+    ]
+    ++ [
+      custom-screenshooter
+    ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
@@ -109,8 +138,9 @@
         "noanim,class:^(flameshot)$"
         "noborder,class:^(flameshot)$"
 
-        # chromium fixes
+        # browser fixes
         "noblur,class:^(chromium)$"
+        "noblur,class:^(floorp)$"
       ];
 
       layerrule = [
@@ -131,8 +161,8 @@
 
           "$mod, R, exec, rofi -show drun"
           "$mod SHIFT, P, exec, hyprpicker -r | wl-copy"
-          ", Print, exec, grimblast copy area --freeze"
-          "$mod, Print, exec, grimblast copy output --freeze"
+          ", Print, exec, screenshooter area"
+          "$mod, Print, exec, screenshooter output"
         ]
         ++ (
           # workspaces

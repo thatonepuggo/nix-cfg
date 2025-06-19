@@ -7,4 +7,6 @@
   #(final: prev: {
   #  config.allowUnfree = true;
   #})
+
+  inputs.nix-your-shell.overlays.default
 ]
