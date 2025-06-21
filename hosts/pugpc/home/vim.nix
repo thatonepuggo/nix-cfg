@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  lib,
   ...
 }: {
   imports = [inputs.nvf.homeManagerModules.default];
@@ -47,10 +48,49 @@
         signcolumn = "yes:1";
       };
 
+      autocmds = [
+        {
+          desc = "strip trailing whitespace";
+          event = ["BufWritePre"];
+          pattern = ["*"];
+          command = "%s/\s\+$//e";
+        }
+        {
+          desc = "create missing directories on save";
+          event = ["BufWritePre"];
+          pattern = ["*"];
+          callback =  lib.generators.mkLuaInline ''
+            function()
+              local fn = vim.fn
+
+              local dir = fn.expand('<afile>:p:h')
+
+              -- This handles URLs using netrw. See ':help netrw-transparent' for details.
+              if dir:find('%l+://') == 1 then
+                return
+              end
+
+              if fn.isdirectory(dir) == 0 then
+                fn.mkdir(dir, 'p')
+              end
+            end
+          '';
+        }
+      ];
+
       statusline.lualine.enable = true;
       telescope.enable = true;
-      autocomplete.nvim-cmp.enable = true;
-
+      autocomplete.nvim-cmp = {
+        enable = true;
+        sources = {
+          nvim-cmp = null;
+          buffer = "[Buffer]";
+          path = "[Path]";
+        };
+      };
+      formatter.conform-nvim.enable = true;
+      snippets.luasnip.enable = true;
+      
       lsp.enable = true;
       languages = {
         enableTreesitter = true;
@@ -59,8 +99,16 @@
         go.enable = true;
         lua.enable = true;
         nix.enable = true;
+        python.enable = true;
         rust.enable = true;
         ts.enable = true;
+      };
+
+      diagnostics = {
+        enable = true;
+        config = {
+          update_in_insert = true;
+        };
       };
     };
   };

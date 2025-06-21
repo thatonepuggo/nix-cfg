@@ -13,7 +13,7 @@
       extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
         # nekocap # waiting for issue to get accepted
         bitwarden
-        (frankerfacez.override { meta.license = lib.licenses.asl20; }) # "nonfree extension" even though its under apache license
+        (frankerfacez.override { meta.license = lib.licenses.asl20; }) # i have to override it or else it  
         sponsorblock
         stylus
         ublock-origin
@@ -111,7 +111,7 @@
           };
         };
 
-        default = "duckduckgo";
+        default = "ddg";
         force = true;
       };
 
