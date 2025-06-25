@@ -21,33 +21,35 @@
         reddit-enhancement-suite
       ];
 
-      bookmarks.settings = let
-        mkBookmark = name: url: {inherit name url;};
-        mkKeyword = name: keyword: url: {inherit name keyword url;};
-        mkFolder = name: bookmarks: {inherit name bookmarks;};
-        mkToolbar = bookmarks: {
-          inherit bookmarks;
-          toolbar = true;
-        };
-      in [
-        (mkToolbar [
-          (mkBookmark "YouTube" "https://youtube.com")
+      bookmarks = {
+        settings = let
+          mkBookmark = name: url: {inherit name url;};
+          mkKeyword = name: keyword: url: {inherit name keyword url;};
+          mkFolder = name: bookmarks: {inherit name bookmarks;};
+          mkToolbar = bookmarks: {
+            inherit bookmarks;
+            toolbar = true;
+          };
+        in [
+          (mkToolbar [
+            (mkBookmark "YouTube" "https://youtube.com")
 
-          (mkFolder "nix resources" [
-            (mkKeyword
-              "nixos packages"
-              "nixpkgs"
-              "https://search.nixos.org/packages?channel=unstable&query=%s")
-            (mkKeyword
-              "nixos options"
-              "nixopts"
-              "https://search.nixos.org/options?channel=unstable&query=%s")
-            (mkBookmark "hm opts" "https://nix-community.github.io/home-manager/options.xhtml")
-            (mkBookmark "explainix" "https://zaynetro.com/explainix")
+            (mkFolder "nix resources" [
+              (mkKeyword
+                "nixos packages"
+                "nixpkgs"
+                "https://search.nixos.org/packages?channel=unstable&query=%s")
+              (mkKeyword
+                "nixos options"
+                "nixopts"
+                "https://search.nixos.org/options?channel=unstable&query=%s")
+              (mkBookmark "hm opts" "https://nix-community.github.io/home-manager/options.xhtml")
+              (mkBookmark "explainix" "https://zaynetro.com/explainix")
+            ])
           ])
-        ])
-      ];
-      bookmarks.force = true;
+        ];
+        force = true;
+      };
 
       search = {
         engines = {
@@ -177,10 +179,29 @@
       ExtensionSettings = {
         "*".installation_mode = "allowed";
       };
-      SearchEngines = {
-        Default = "DuckDuckGo";
-        PreventInstalls = true;
-      };
     };
+  };
+
+  programs.chromium = {
+    enable = true;
+    package = pkgs.chromium;
+    commandLineArgs = [
+      "--enable-features=AcceleratedVideoEncoder,VaapiOnNvidiaGPUs,VaapiIgnoreDriverChecks,Vulkan,DefaultANGLEVulkan,VulkanFromANGLE"
+      "--enable-features=VaapiIgnoreDriverChecks,VaapiVideoDecoder,PlatformHEVCDecoderSupport"
+      "--enable-features=UseMultiPlaneFormatForHardwareVideo"
+      "--enable-zero-copy"
+      "--enable-logging=stderr"
+      "--ignore-gpu-blocklist"
+      "--ozone-platform-hint=auto"
+      "--ozone-platform=wayland"
+    ];
+    extensions = [
+      {id = "ddkjiahejlhfcafbddmgiahcphecmpfh";} # ublock origin lite
+      {id = "gmopgnhbhiniibbiilmbjilcmgaocokj";} # nekocap
+      {id = "nngceckbapebfimnlniiiahkandclblb";} # bitwarden
+      {id = "fadndhdgpmmaapbmfcknlfgcflmmmieb";} # frankerfacez
+      {id = "jgejdcdoeeabklepnkdbglgccjpdgpmf";} # old twitter layout
+      {id = "kbmfpngjjgdllneeigpgjifpgocmfgmb";} # reddit enhancement suite
+    ];
   };
 }

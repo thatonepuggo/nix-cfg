@@ -1,0 +1,50 @@
+// have to wait for stylix eww support 
+// https://github.com/nix-community/stylix/issues/1440
+// it just inherits from gtk for now
+
+// globals
+
+window {
+  font-family: monospace;
+}
+
+// classes
+
+.sidestuff slider {
+  all: unset;
+}
+
+button {
+  border-radius: 0;
+}
+
+.metric scale trough highlight {
+  all: unset;
+  background-color: #D35D6E;
+  color: #000000;
+  border-radius: 10px;
+}
+
+.metric scale trough {
+  all: unset;
+  background-color: #4e4e4e;
+  border-radius: 50px;
+  min-height: 3px;
+  min-width: 50px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.binary,
+.metric {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.label-ram {
+  font-size: large;
+}
+
+.workspaces button:hover {
+  color: #D35D6E;
+}

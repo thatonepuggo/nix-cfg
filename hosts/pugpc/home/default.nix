@@ -6,9 +6,11 @@
   imports = [
     ./browser.nix
     ./dunst.nix
+    ./eww
     ./ghostty.nix
     ./git.nix
     ./hyprland.nix
+    ./niri.nix
     ./obs.nix
     ./rofi.nix
     ./spicetify.nix
@@ -59,6 +61,7 @@
       filezilla
       kdePackages.dolphin
       kdePackages.ark
+      krita
 
       # alternatives
       eza

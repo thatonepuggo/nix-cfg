@@ -102,6 +102,7 @@
         python.enable = true;
         rust.enable = true;
         ts.enable = true;
+        css.enable = true;
       };
 
       diagnostics = {

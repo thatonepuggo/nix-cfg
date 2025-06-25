@@ -9,6 +9,7 @@
     case "$1" in
     area)
       wayfreeze \
+        --hide-cursor \
         --after-freeze-cmd 'grim -g "$(slurp)" - | wl-copy; pkill wayfreeze'
     ;;
     output)
@@ -25,8 +26,6 @@ in {
       wayfreeze
       grim
       slurp
-
-      jq
     ]
     ++ [
       custom-screenshooter
@@ -38,8 +37,8 @@ in {
       "$mod" = "SUPER";
 
       exec-once = [
-        "wl-paste --type text --watch cliphist store" #Stores only text data
-        "wl-paste --type image --watch cliphist store" #Stores only image data
+        "wl-paste --type text --watch cliphist store" # Stores only text data
+        "wl-paste --type image --watch cliphist store" # Stores only image data
         "wl-clip-persist --clipboard both" # persist both clipboard
 
         # polkit
@@ -161,8 +160,8 @@ in {
 
           "$mod, R, exec, rofi -show drun"
           "$mod SHIFT, P, exec, hyprpicker -r | wl-copy"
-          ", Print, exec, screenshooter area"
-          "$mod, Print, exec, screenshooter output"
+          ", Print, exec, ${custom-screenshooter}/bin/screenshooter area"
+          "$mod, Print, exec, ${custom-screenshooter}/bin/screenshooter output"
         ]
         ++ (
           # workspaces

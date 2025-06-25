@@ -1,0 +1,79 @@
+; vim:ft=lisp
+;; ^ no yuck support in nvf :(
+
+(defpoll volume :interval "1s"
+  "wpctl get-volume @DEFAULT_SINK@ | awk '{print $2 * 100}'")
+
+(defpoll time :interval "1s"
+  "date '+%H:%M:%S %A, %b %d, %Y'")
+
+(defpoll caps :interval "500ms"
+  `cat /sys/class/leds/input*::capslock/brightness`)
+
+(defwidget bar []
+  (centerbox :orientation "h"
+    (workspaces)
+    (empty)
+    (sidestuff)))
+
+(defwidget workspaces []
+  (box :class "workspaces"
+       :orientation "h"
+       :space-evenly true
+       :halign "start"
+       :spacing 10
+    (for n in `[1,2,3,4,5,6,7,8,9]`
+     (button :onclick "niri msg action focus-workspace ${n}" n))))
+
+(defwidget empty []
+  (box :class "empty"
+       :orientation "h"
+       :space-evenly false
+       :halign "center"
+    "")) ; todo
+
+(defwidget sidestuff []
+  (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
+    (binary :labelon " "
+            :labeloff " "
+            :state {caps == "1" ? true : false})
+    (metric :label " "
+            :value volume
+            :onchange "") ; incorrect probably: echo wpctl set-volume @DEFAULT_SINK@ \"$(awk '{print $1 / 100}' -)\"
+    (metric :label " "
+            :value {EWW_RAM.used_mem_perc}
+            :onchange "")
+    (metric :label " "
+            :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
+            :onchange "")
+    time))
+
+
+(defwidget metric [label value onchange]
+  (box :orientation "h"
+       :class "metric"
+       :space-evenly false
+    (box :class "label" label)
+    (scale :min 0
+           :max 101
+           :active {onchange != ""}
+           :value value
+           :onchange onchange)))
+
+(defwidget binary [labelon labeloff state]
+  (box :orientation "h"
+       :class "binary"
+       :space-evenly false 
+    (box :class "label" {state ? labelon : labeloff})))
+
+
+(defwindow bar
+  :monitor 1
+  :windowtype "dock"
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "100%"
+                      :height "10px"
+                      :anchor "top center")
+  :exclusive true
+  (bar))

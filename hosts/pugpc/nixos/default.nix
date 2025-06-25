@@ -69,6 +69,7 @@
   programs.zsh.enable = true;
   programs.nh.enable = true;
   programs.hyprland.enable = true;
+  programs.niri.enable = true;
 
   # first version installed on this system
   system.stateVersion = "25.05";
