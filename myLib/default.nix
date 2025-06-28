@@ -28,32 +28,44 @@ in rec {
 
   ## buildables ##
 
-  mkSystem = config:
+  mkSystem = { system, hostName, nixosConfig, homeConfigs }:
     inputs.nixpkgs.lib.nixosSystem {
+      inherit system;
       specialArgs = {
-        inherit inputs outputs myLib;
+        inherit inputs outputs myLib hostName;
       };
       modules = [
-        config
+        (import nixosConfig hostName)
         outputs.nixosModules.default
         overlayModule
+
+        inputs.stylix.nixosModules.stylix
+        inputs.niri.nixosModules.niri
+
+        inputs.home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            extraSpecialArgs = {
+              inherit inputs outputs myLib;
+            };
+            sharedModules = [
+              inputs.spicetify-nix.homeManagerModules.spicetify
+              inputs.nvf.homeManagerModules.default
+              outputs.homeManagerModules.default
+            ];
+            users = builtins.mapAttrs (username: cfg: import cfg username hostName) homeConfigs;
+          };
+        }
+
         inputs.lix-module.nixosModules.default
       ];
     };
 
-  mkHome = sys: config:
-    inputs.home-manager.lib.homeManagerConfiguration {
-      pkgs = pkgsFor sys;
-      extraSpecialArgs = {
-        inherit inputs myLib outputs;
-      };
-      modules = [
-        { nixpkgs.config.allowUnfree = true; }
-        config
-        outputs.homeManagerModules.default
-      ];
-    };
-
+  mkSystems = confs@{ ... }: builtins.mapAttrs (hostName: conf: 
+    mkSystem (conf // { inherit hostName; })
+  ) confs;
   ## utils ##
 
   pow = base: exponent: builtins.foldl' (x: _: x * base) 1 (builtins.genList (x: x) exponent);

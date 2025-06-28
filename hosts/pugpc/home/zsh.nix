@@ -30,7 +30,7 @@
     initContent = ''
       nix-your-shell zsh | source /dev/stdin
 
-      if [[ -n $NIX_BUILD_TOP ]]; then
+      if [[ -n $IN_NIX_SHELL ]]; then
         _prompt_nix_icon="%F{blue} %f "
       else
         _prompt_nix_icon=""

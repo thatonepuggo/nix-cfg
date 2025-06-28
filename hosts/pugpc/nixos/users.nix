@@ -3,8 +3,6 @@
   pkgs,
   ...
 }: {
-  networking.hostName = "pugpc";
-
   users.users.pug = {
     isNormalUser = true;
     ignoreShellProgramCheck = true;

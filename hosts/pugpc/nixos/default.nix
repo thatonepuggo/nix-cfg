@@ -1,4 +1,4 @@
-{
+hostName: {
   config,
   pkgs,
   ...
@@ -16,10 +16,14 @@
     ./wayland.nix
     ./sound.nix
     ./steam.nix
+    ./stylix.nix
   ];
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking = {
+    networkmanager.enable = true;
+    inherit hostName;
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -69,7 +73,10 @@
   programs.zsh.enable = true;
   programs.nh.enable = true;
   programs.hyprland.enable = true;
-  programs.niri.enable = true;
+  programs.niri = {
+    enable = true;
+    package = pkgs.niri-unstable;
+  };
 
   # first version installed on this system
   system.stateVersion = "25.05";

@@ -1,4 +1,4 @@
-{
+username: hostName: {
   lib,
   pkgs,
   ...
@@ -14,7 +14,6 @@
     ./obs.nix
     ./rofi.nix
     ./spicetify.nix
-    ./themes.nix
     ./vesktop.nix
     ./vim.nix
     ./waybar.nix
@@ -22,8 +21,8 @@
   ];
 
   home = {
-    username = "pug";
-    homeDirectory = lib.mkDefault "/home/${home.username}";
+    inherit username;
+    homeDirectory = lib.mkDefault "/home/${username}";
 
     packages = with pkgs; [
       # fun

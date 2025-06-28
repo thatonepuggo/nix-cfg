@@ -1,16 +1,7 @@
 { inputs, pkgs, lib, config, wallpapers, ... }: let
   wallpapers = import ./wallpapers { inherit pkgs lib; };
 in {  
-  imports = [
-    inputs.niri.homeModules.niri
-    inputs.niri.homeModules.stylix
-  ];
-  nixpkgs.overlays = [inputs.niri.overlays.niri];
-
   programs.niri = {
-    enable = true;
-    package = pkgs.niri-unstable;
-    
     settings = {
       spawn-at-startup = let 
         toSpawn = [
@@ -206,6 +197,4 @@ in {
       };
     };
   };
-
-  stylix.targets.niri.enable = true;
 }

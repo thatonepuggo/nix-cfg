@@ -44,12 +44,14 @@
       devShells = eachSystem (pkgs: import ./shell.nix {inherit pkgs;});
       formatter = eachSystem (pkgs: pkgs.alejandra);
 
-      nixosConfigurations = {
-        pugpc = mkSystem ./hosts/pugpc/nixos;
-      };
-
-      homeConfigurations = {
-        "pug@pugpc" = mkHome "x86_64-linux" ./hosts/pugpc/home;
+      nixosConfigurations = mkSystems {
+        pugpc = {
+          system = "x86_64-linux";
+          nixosConfig = ./hosts/pugpc/nixos;
+          homeConfigs = {
+            pug = ./hosts/pugpc/home;
+          };
+        };
       };
 
       nixosModules.default = import ./modules/nixos;

@@ -9,4 +9,5 @@
   #})
 
   inputs.nix-your-shell.overlays.default
+  inputs.niri.overlays.niri
 ]
