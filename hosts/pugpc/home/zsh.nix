@@ -17,12 +17,14 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
-      ls = "eza -F --icons --color=auto";
+      ls = "eza -F --icons --color=auto --sort=type";
       ll = "ls -lh";
       lt = "ls -hSs -1";
 
       vim = "nvim";
       v = "vim";
+      
+      cd = "z";
     };
 
     autocd = true;
@@ -30,14 +32,16 @@
     initContent = ''
       nix-your-shell zsh | source /dev/stdin
 
-      if [[ -n $IN_NIX_SHELL ]]; then
-        _prompt_nix_icon="%F{blue} %f "
-      else
-        _prompt_nix_icon=""
-      fi
+      _make_prompt() {  
+        local _nix_icon=""
+        if [[ -n $IN_NIX_SHELL ]]; then
+          _nix_icon="%F{blue} %f "
+        fi
+        echo "%~ ''${_prompt_nix_icon}%(?.%F{green}.%F{red}%? )%B%#%f%b "
+      }
 
       setopt PROMPT_SUBST
-      PROMPT="%~ ''${_prompt_nix_icon}%(?.%F{green}.%F{red}%? )%B%#%f%b "
+      PROMPT="$(_make_prompt)"
     '';
 
     history.size = 10000;

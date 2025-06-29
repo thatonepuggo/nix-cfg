@@ -1,6 +1,7 @@
 username: hostName: {
   lib,
   pkgs,
+  config,
   ...
 }: rec {
   imports = [
@@ -9,8 +10,6 @@ username: hostName: {
     ./eww
     ./ghostty.nix
     ./git.nix
-    ./hyprland.nix
-    ./niri.nix
     ./obs.nix
     ./rofi.nix
     ./spicetify.nix
@@ -79,6 +78,49 @@ username: hostName: {
 
     # do not edit
     stateVersion = "25.05";
+  };
+  
+  myHome = {
+    windowManager = "niri";
+
+    # todo: make this an attrset idkwtf i was doing
+    monitors = [
+      {
+        name = "HDMI-A-1";   
+        mode = {
+          width = 1920;
+          height = 1080;
+          refresh = 74.97;
+        };
+        position = { x = 0; y = 0; };
+      }
+      {
+        name = "DP-1";   
+        mode = {
+          width = 1920;
+          height = 1080;
+          refresh = 60.; 
+        };
+        position = { x = 1920; y = 0; };
+      }
+    ];
+
+    wallpaper = with config.lib.stylix.colors.withHashtag;
+      pkgs.runCommand "cat.png" {} ''
+        pastel=${pkgs.pastel}/bin/pastel
+        SHADOWS=$($pastel darken 0.1 '${base05}' | $pastel format hex)
+        TAIL=$($pastel lighten 0.1 '${base02}' | $pastel format hex)
+        HIGHLIGHTS=$($pastel lighten 0.1 '${base05}' | $pastel format hex)
+
+        ${pkgs.imagemagick}/bin/convert ${./attachments/basecat.png} \
+          -fill '${base00}' -opaque black \
+          -fill '${base05}' -opaque white \
+          -fill '${base08}' -opaque blue \
+          -fill $SHADOWS -opaque gray \
+          -fill '${base02}' -opaque orange \
+          -fill $TAIL -opaque green \
+          -fill $HIGHLIGHTS -opaque brown \
+          $out'';
   };
 
   programs.home-manager.enable = true;

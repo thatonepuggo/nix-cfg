@@ -55,6 +55,6 @@
       };
 
       nixosModules.default = import ./modules/nixos;
-      homeManagerModules.default = import ./modules/home-manager;
+      homeManagerModules.default = import ./modules/home;
     };
 }

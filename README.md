@@ -8,3 +8,6 @@ cd ~/.config/nixos
 nix develop
 nh os switch . && nh home switch -b bak .
 ```
+
+## thanks
+* [spl3g](https://github.com/spl3g/nixfiles) - background

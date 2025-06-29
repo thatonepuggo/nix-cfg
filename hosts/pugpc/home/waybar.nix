@@ -2,7 +2,9 @@
   config,
   pkgs,
   ...
-}: {
+}: let 
+  cfg = config.myHome;
+in {
   programs.waybar = {
     enable = true;
 
@@ -12,14 +14,14 @@
         position = "top"; # Waybar at the bottom of your screen
         height = 24; # Waybar height
         # Choose the order of the modules
-        modules-left = ["hyprland/workspaces" "hyprland/mode"];
-        modules-center = ["hyprland/window"];
+        modules-left = ["${cfg.windowManager}/workspaces" "${cfg.windowManager}/mode"];
+        modules-center = ["${cfg.windowManager}/window"];
         modules-right = ["keyboard-state" "wireplumber" "network" "cpu" "memory" "battery" "tray" "clock"];
-        "hyprland/workspaces" = {
+        "${cfg.windowManager}/workspaces" = {
           disable-scroll = true;
           all-outputs = false;
         };
-        "hyprland/mode" = {
+        "${cfg.windowManager}/mode" = {
           format = "<span style=\"italic\">{}</span>";
         };
         "tray" = {
