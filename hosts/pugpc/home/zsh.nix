@@ -34,10 +34,10 @@
 
       _make_prompt() {  
         local _nix_icon=""
-        if [[ -n $IN_NIX_SHELL ]]; then
+        if [ ! -z "$IN_NIX_SHELL" ]; then
           _nix_icon="%F{blue} %f "
         fi
-        echo "%~ ''${_prompt_nix_icon}%(?.%F{green}.%F{red}%? )%B%#%f%b "
+        echo "%~ ''${_nix_icon}%(?.%F{green}.%F{red}%? )%B%#%f%b "
       }
 
       setopt PROMPT_SUBST

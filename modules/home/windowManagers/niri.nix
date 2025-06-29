@@ -4,6 +4,17 @@
   lak = field: list: builtins.listToAttrs ( map ( v: { name = v.${field}; value = v;  } ) list );
 in {
   config = lib.mkIf (cfg.windowManager == "niri") {
+    xdg.portal = {
+      xdgOpenUsePortal = true;
+      enable = true;
+      config = {
+        common.default = "gtk";
+      };
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gnome
+        pkgs.xdg-desktop-portal-gtk
+      ];
+    };
     programs.niri = {
       settings = {
         spawn-at-startup = let 
