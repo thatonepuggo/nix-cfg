@@ -5,7 +5,7 @@
   ...
 }: {
   config = {
-    environment.systemPackages = [
+    fonts.packages = [
       # extra fonts #
       pkgs.noto-fonts
       pkgs.noto-fonts-cjk-sans
@@ -22,8 +22,6 @@
       pkgs.corefonts
       pkgs.vistafonts
     ];
-
-    fonts.fontconfig.enable = true;
 
     stylix = {
       enable = true;
