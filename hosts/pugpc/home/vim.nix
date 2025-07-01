@@ -57,7 +57,7 @@
           desc = "create missing directories on save";
           event = ["BufWritePre"];
           pattern = ["*"];
-          callback =  lib.generators.mkLuaInline ''
+          callback = lib.generators.mkLuaInline ''
             function()
               local fn = vim.fn
 
@@ -88,7 +88,7 @@
       };
       formatter.conform-nvim.enable = true;
       snippets.luasnip.enable = true;
-      
+
       lsp.enable = true;
       languages = {
         enableTreesitter = true;

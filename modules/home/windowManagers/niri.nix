@@ -1,7 +1,18 @@
-{ inputs, pkgs, lib, config, ... }: let
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   cfg = config.myHome;
   # thank you https://discourse.nixos.org/t/list-to-attribute-set/20929/4
-  lak = field: list: builtins.listToAttrs ( map ( v: { name = v.${field}; value = v;  } ) list );
+  lak = field: list:
+    builtins.listToAttrs (map (v: {
+        name = v.${field};
+        value = v;
+      })
+      list);
 in {
   config = lib.mkIf (cfg.windowManager == "niri") {
     xdg.portal = {
@@ -17,7 +28,7 @@ in {
     };
     programs.niri = {
       settings = {
-        spawn-at-startup = let 
+        spawn-at-startup = let
           toSpawn = [
             "wl-clip-persist --clipboard both" # persist both clipboard
 
@@ -33,7 +44,8 @@ in {
             # bar
             "waybar"
           ];
-        in builtins.map (cmd: { command = ["sh" "-c" cmd]; }) toSpawn;
+        in
+          builtins.map (cmd: {command = ["sh" "-c" cmd];}) toSpawn;
 
         input = {
           keyboard.xkb = {
@@ -52,7 +64,7 @@ in {
 
         screenshot-path = "~/Pictures/Screenshots/Screenshot %Y-%m-%d %H-%M-%S.png";
 
-        binds = with config.lib.niri.actions; { 
+        binds = with config.lib.niri.actions; {
           "Mod+Shift+Slash".action = show-hotkey-overlay;
 
           # Suggested binds for running programs: terminal, app launcher, screen locker.
@@ -139,15 +151,15 @@ in {
           "Mod+7".action = focus-workspace 7;
           "Mod+8".action = focus-workspace 8;
           "Mod+9".action = focus-workspace 9;
-          "Mod+Ctrl+1".action = { move-column-to-workspace = 1; };
-          "Mod+Ctrl+2".action = { move-column-to-workspace = 2; };
-          "Mod+Ctrl+3".action = { move-column-to-workspace = 3; };
-          "Mod+Ctrl+4".action = { move-column-to-workspace = 4; };
-          "Mod+Ctrl+5".action = { move-column-to-workspace = 5; };
-          "Mod+Ctrl+6".action = { move-column-to-workspace = 6; };
-          "Mod+Ctrl+7".action = { move-column-to-workspace = 7; };
-          "Mod+Ctrl+8".action = { move-column-to-workspace = 8; };
-          "Mod+Ctrl+9".action = { move-column-to-workspace = 9; };
+          "Mod+Ctrl+1".action = {move-column-to-workspace = 1;};
+          "Mod+Ctrl+2".action = {move-column-to-workspace = 2;};
+          "Mod+Ctrl+3".action = {move-column-to-workspace = 3;};
+          "Mod+Ctrl+4".action = {move-column-to-workspace = 4;};
+          "Mod+Ctrl+5".action = {move-column-to-workspace = 5;};
+          "Mod+Ctrl+6".action = {move-column-to-workspace = 6;};
+          "Mod+Ctrl+7".action = {move-column-to-workspace = 7;};
+          "Mod+Ctrl+8".action = {move-column-to-workspace = 8;};
+          "Mod+Ctrl+9".action = {move-column-to-workspace = 9;};
 
           "Mod+Comma".action = consume-window-into-column;
           "Mod+Period".action = expel-window-from-column;
@@ -182,7 +194,7 @@ in {
           # "Mod+Shift+Space".action = switch-layout "prev";
 
           "Print".action = screenshot;
-          "Ctrl+Print".action = { screenshot-screen = []; };
+          "Ctrl+Print".action = {screenshot-screen = [];};
           "Alt+Print".action = screenshot-window;
 
           # The quit action will show a confirmation dialog to avoid accidental exits.

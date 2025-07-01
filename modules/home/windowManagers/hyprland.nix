@@ -20,10 +20,9 @@
   cfg = config.myHome;
 in {
   config = lib.mkIf (cfg.windowManager == "hyprland") {
-    home.packages = with pkgs;
-      [
-        hyprpolkitagent
-      ];
+    home.packages = with pkgs; [
+      hyprpolkitagent
+    ];
 
     wayland.windowManager.hyprland = {
       enable = true;
@@ -48,15 +47,18 @@ in {
           "waybar"
         ];
 
-        monitor = builtins.map (monitor: 
-          let
-            inherit (monitor) name scale;
-            inherit (monitor.mode) width height refresh;
-            inherit (monitor.position) x y;
-          in "${name},${width}x${height}@${refresh},${x}x${y},${scale}"
-        ) cfg.monitors ++ [
-          ",preferred,auto,1"
-        ];
+        monitor =
+          builtins.map (
+            monitor: let
+              inherit (monitor) name scale;
+              inherit (monitor.mode) width height refresh;
+              inherit (monitor.position) x y;
+            in "${name},${width}x${height}@${refresh},${x}x${y},${scale}"
+          )
+          cfg.monitors
+          ++ [
+            ",preferred,auto,1"
+          ];
 
         input = {
           kb_layout = "us";
@@ -168,13 +170,13 @@ in {
             # workspaces
             # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
             builtins.concatLists (builtins.genList (
-              i: let
-                ws = i + 1;
-              in [
-                "$mod, code:1${toString i}, workspace, ${toString ws}"
-                "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-              ]
-            )
+                i: let
+                  ws = i + 1;
+                in [
+                  "$mod, code:1${toString i}, workspace, ${toString ws}"
+                  "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+                ]
+              )
               9)
           );
 

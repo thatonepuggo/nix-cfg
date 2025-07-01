@@ -36,7 +36,6 @@ username: hostName: {
       ffmpeg
       imagemagick
 
-
       # gui
       pavucontrol
       vlc
@@ -80,29 +79,35 @@ username: hostName: {
   programs.btop.enable = true;
   programs.mpv.enable = true;
   programs.eza.enable = true;
-  
+
   myHome = {
     windowManager = "niri";
 
     # todo: make this an attrset idkwtf i was doing
     monitors = [
       {
-        name = "HDMI-A-1";   
+        name = "HDMI-A-1";
         mode = {
           width = 1920;
           height = 1080;
           refresh = 74.97;
         };
-        position = { x = 0; y = 0; };
+        position = {
+          x = 0;
+          y = 0;
+        };
       }
       {
-        name = "DP-1";   
+        name = "DP-1";
         mode = {
           width = 1920;
           height = 1080;
-          refresh = 60.; 
+          refresh = 60.;
         };
-        position = { x = 1920; y = 0; };
+        position = {
+          x = 1920;
+          y = 0;
+        };
       }
     ];
 

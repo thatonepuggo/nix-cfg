@@ -2,7 +2,7 @@
   config,
   pkgs,
   ...
-}: let 
+}: let
   cfg = config.myHome;
 in {
   programs.waybar = {

@@ -1,4 +1,8 @@
-{ lib, config, ... }: {
+{
+  lib,
+  config,
+  ...
+}: {
   imports = [
     ./niri.nix
     ./hyprland.nix

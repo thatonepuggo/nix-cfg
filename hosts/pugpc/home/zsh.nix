@@ -1,10 +1,7 @@
-{
-  pkgs,
-  ...
-}: {
-  home.packages = with pkgs; [ nix-your-shell ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [nix-your-shell];
   home.shell.enableZshIntegration = true;
-  
+
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
@@ -23,7 +20,7 @@
 
       vim = "nvim";
       v = "vim";
-      
+
       cd = "z";
     };
 
@@ -32,7 +29,7 @@
     initContent = ''
       nix-your-shell zsh | source /dev/stdin
 
-      _make_prompt() {  
+      _make_prompt() {
         local _nix_icon=""
         if [ ! -z "$IN_NIX_SHELL" ]; then
           _nix_icon="%F{blue} %f "

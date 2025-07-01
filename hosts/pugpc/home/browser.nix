@@ -13,7 +13,7 @@
       extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
         # nekocap # waiting for issue to get accepted
         bitwarden
-        (frankerfacez.override { meta.license = lib.licenses.asl20; }) # i have to override it or else it  
+        (frankerfacez.override {meta.license = lib.licenses.asl20;}) # i have to override it or else it
         sponsorblock
         stylus
         ublock-origin

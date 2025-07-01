@@ -28,7 +28,12 @@ in rec {
 
   ## buildables ##
 
-  mkSystem = { system, hostName, nixosConfig, homeConfigs }:
+  mkSystem = {
+    system,
+    hostName,
+    nixosConfig,
+    homeConfigs,
+  }:
     inputs.nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = {
@@ -64,9 +69,12 @@ in rec {
       ];
     };
 
-  mkSystems = confs@{ ... }: builtins.mapAttrs (hostName: conf: 
-    mkSystem (conf // { inherit hostName; })
-  ) confs;
+  mkSystems = confs @ {...}:
+    builtins.mapAttrs (
+      hostName: conf:
+        mkSystem (conf // {inherit hostName;})
+    )
+    confs;
   ## utils ##
 
   pow = base: exponent: builtins.foldl' (x: _: x * base) 1 (builtins.genList (x: x) exponent);
