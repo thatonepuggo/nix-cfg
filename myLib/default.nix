@@ -55,6 +55,7 @@ in rec {
               inputs.nvf.homeManagerModules.default
               outputs.homeManagerModules.default
             ];
+            backupFileExtension = "bak";
             users = builtins.mapAttrs (username: cfg: import cfg username hostName) homeConfigs;
           };
         }

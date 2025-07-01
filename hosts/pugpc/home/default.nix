@@ -30,18 +30,15 @@ username: hostName: {
       blahaj
       lolcat
       figlet
-      fastfetch
-      cava
-
-      # system monitor
-      btop
 
       # tools
-      pavucontrol
       cloc
+      ffmpeg
+      imagemagick
+
 
       # gui
-      mpv
+      pavucontrol
       vlc
       chatterino2
       (prismlauncher.override {
@@ -59,10 +56,8 @@ username: hostName: {
       filezilla
       kdePackages.dolphin
       kdePackages.ark
+      kdePackages.gwenview
       krita
-
-      # alternatives
-      eza
 
       # langs
       lua
@@ -79,6 +74,12 @@ username: hostName: {
     # do not edit
     stateVersion = "25.05";
   };
+
+  programs.fastfetch.enable = true;
+  programs.cava.enable = true;
+  programs.btop.enable = true;
+  programs.mpv.enable = true;
+  programs.eza.enable = true;
   
   myHome = {
     windowManager = "niri";

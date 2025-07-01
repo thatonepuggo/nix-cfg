@@ -35,7 +35,6 @@
 
       targets.chromium.enable = true;
       targets.grub.enable = true;
-      targets.plymouth.enable = true;
 
       fonts = {
         serif = {

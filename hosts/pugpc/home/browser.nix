@@ -202,7 +202,7 @@
       {id = "gmopgnhbhiniibbiilmbjilcmgaocokj";} # nekocap
       {id = "nngceckbapebfimnlniiiahkandclblb";} # bitwarden
       {id = "fadndhdgpmmaapbmfcknlfgcflmmmieb";} # frankerfacez
-      {id = "jgejdcdoeeabklepnkdbglgccjpdgpmf";} # old twitter layout
+      #{id = "jgejdcdoeeabklepnkdbglgccjpdgpmf";} # old twitter layout
       {id = "kbmfpngjjgdllneeigpgjifpgocmfgmb";} # reddit enhancement suite
     ];
   };
