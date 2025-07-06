@@ -10,6 +10,8 @@
     settings.vim = {
       package = pkgs.neovim-unwrapped;
 
+      clipboard.enable = true;
+
       options = let
         tabSize = 2;
         useSpaces = true;
@@ -51,7 +53,7 @@
           desc = "strip trailing whitespace";
           event = ["BufWritePre"];
           pattern = ["*"];
-          command = "%s/\s\+$//e";
+          command = "%s/\\s\\+$//e";
         }
         {
           desc = "create missing directories on save";
