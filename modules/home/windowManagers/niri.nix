@@ -18,9 +18,7 @@ in {
     xdg.portal = {
       xdgOpenUsePortal = true;
       enable = true;
-      config = {
-        common.default = "gtk";
-      };
+      config.common.default = "gtk";
       extraPortals = [
         pkgs.xdg-desktop-portal-gnome
         pkgs.xdg-desktop-portal-gtk
@@ -45,11 +43,9 @@ in {
         in
           builtins.map (cmd: {command = ["sh" "-c" cmd];}) toSpawn;
 
-        input = {
-          keyboard.xkb = {
-            layout = "us";
-            options = "compose:rwin";
-          };
+        input.keyboard.xkb = {
+          layout = "us";
+          options = "compose:rwin";
         };
 
         outputs = lak "name" cfg.monitors;
