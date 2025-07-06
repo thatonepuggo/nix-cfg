@@ -96,7 +96,10 @@
         clang.enable = true;
         go.enable = true;
         lua.enable = true;
-        nix.enable = true;
+        nix = {
+          enable = true;
+          lsp.enable = true;
+        };
         python.enable = true;
         rust.enable = true;
         ts.enable = true;

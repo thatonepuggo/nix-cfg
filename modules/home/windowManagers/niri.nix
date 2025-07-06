@@ -30,8 +30,6 @@ in {
       settings = {
         spawn-at-startup = let
           toSpawn = [
-            "wl-clip-persist --clipboard both" # persist both clipboard
-
             # xwayland
             "${pkgs.xwayland-satellite}/bin/xwayland-satellite"
 

@@ -72,6 +72,7 @@ hostName: {
 
   programs.zsh.enable = true;
   programs.nh.enable = true;
+
   programs.hyprland.enable = true;
   programs.niri = {
     enable = true;
