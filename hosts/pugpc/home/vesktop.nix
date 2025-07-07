@@ -68,6 +68,7 @@
           USRBG.enabled = true;
           ValidReply.enabled = true;
           ValidUser.enabled = true;
+          VolumeBooster.enabled = true;
           WebKeybinds.enabled = true;
           WebScreenShareFixes.enabled = true;
           WhoReacted.enabled = true;
