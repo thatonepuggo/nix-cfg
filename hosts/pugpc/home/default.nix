@@ -13,7 +13,6 @@ username: hostName: {
     ./obs.nix
     ./rofi.nix
     ./spicetify.nix
-    ./vesktop.nix
     ./vim.nix
     ./waybar.nix
     ./zsh.nix
@@ -82,6 +81,8 @@ username: hostName: {
 
   myHome = {
     windowManager = "niri";
+
+    nixcord.enable = true;
 
     # todo: make this an attrset idkwtf i was doing
     monitors = [
