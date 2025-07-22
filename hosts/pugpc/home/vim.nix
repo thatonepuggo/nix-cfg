@@ -106,6 +106,7 @@
         rust.enable = true;
         ts.enable = true;
         css.enable = true;
+        haskell.enable = true;
       };
 
       diagnostics = {

@@ -3,7 +3,7 @@ username: hostName: {
   pkgs,
   config,
   ...
-}: rec {
+}: {
   imports = [
     ./browser.nix
     ./dunst.nix
@@ -20,7 +20,7 @@ username: hostName: {
 
   home = {
     inherit username;
-    homeDirectory = lib.mkDefault "/home/${username}";
+    homeDirectory = "/home/${username}";
 
     packages = with pkgs; [
       # fun
@@ -56,6 +56,8 @@ username: hostName: {
       kdePackages.ark
       kdePackages.gwenview
       krita
+      openutau
+      audacity
 
       # langs
       lua
@@ -83,6 +85,7 @@ username: hostName: {
     windowManager = "niri";
 
     nixcord.enable = true;
+    defaultApps.enable = true;
 
     # todo: make this an attrset idkwtf i was doing
     monitors = [

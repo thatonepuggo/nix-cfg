@@ -66,7 +66,7 @@ in rec {
           };
         }
 
-        inputs.lix-module.nixosModules.default
+        #inputs.lix-module.nixosModules.default
       ];
     };
 
