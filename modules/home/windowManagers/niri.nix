@@ -18,10 +18,10 @@ in {
     xdg.portal = {
       xdgOpenUsePortal = true;
       enable = true;
-      config.common.default = "*";
+      config.common.default = [ "gtk" "gnome" ];
       extraPortals = [
-        pkgs.xdg-desktop-portal-gnome
         pkgs.xdg-desktop-portal-gtk
+        pkgs.xdg-desktop-portal-gnome
       ];
     };
     programs.niri = {
