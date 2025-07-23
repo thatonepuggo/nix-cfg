@@ -24,6 +24,9 @@ in {
         pkgs.xdg-desktop-portal-gnome
       ];
     };
+
+    home.sessionVariables.NIXOS_OZONE_WL = "1";
+
     programs.niri = {
       settings = {
         spawn-at-startup = let
