@@ -57,6 +57,10 @@ in {
           DISPLAY = ":0";
         };
 
+        debug = {
+          wait-for-frame-completion-in-pipewire = [];
+        };
+
         prefer-no-csd = true;
 
         screenshot-path = "~/Pictures/Screenshots/Screenshot %Y-%m-%d %H-%M-%S.png";

@@ -2,7 +2,7 @@
   programs.git = {
     enable = true;
     userName = "thatonepuggo";
-    userEmail = "thatonepuggo@github.com";
+    userEmail = "42193477+thatonepuggo@users.noreply.github.com";
   };
 
   programs.gh.enable = true;
