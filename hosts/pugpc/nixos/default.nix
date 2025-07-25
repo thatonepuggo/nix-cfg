@@ -1,6 +1,7 @@
 hostName: {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -68,6 +69,8 @@ hostName: {
     cliphist
 
     libnotify
+
+    inputs.in-nix.packages.${pkgs.system}.nix
   ];
 
   programs.zsh.enable = true;
