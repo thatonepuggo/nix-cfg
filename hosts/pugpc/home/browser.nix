@@ -11,7 +11,7 @@
       isDefault = true;
 
       extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
-        # nekocap # waiting for issue to get accepted
+        nekocap
         bitwarden
         (frankerfacez.override {meta.license = lib.licenses.asl20;}) # i have to override it or else it
         sponsorblock
@@ -184,26 +184,26 @@
 
   stylix.targets.floorp.profileNames = ["user"];
 
-  programs.chromium = {
-    enable = true;
-    package = pkgs.chromium;
-    commandLineArgs = [
-      "--enable-features=AcceleratedVideoEncoder,VaapiOnNvidiaGPUs,VaapiIgnoreDriverChecks,Vulkan,DefaultANGLEVulkan,VulkanFromANGLE"
-      "--enable-features=VaapiIgnoreDriverChecks,VaapiVideoDecoder,PlatformHEVCDecoderSupport"
-      "--enable-features=UseMultiPlaneFormatForHardwareVideo"
-      "--enable-zero-copy"
-      "--enable-logging=stderr"
-      "--ignore-gpu-blocklist"
-      "--ozone-platform-hint=auto"
-      "--ozone-platform=wayland"
-    ];
-    extensions = [
-      {id = "ddkjiahejlhfcafbddmgiahcphecmpfh";} # ublock origin lite
-      {id = "gmopgnhbhiniibbiilmbjilcmgaocokj";} # nekocap
-      {id = "nngceckbapebfimnlniiiahkandclblb";} # bitwarden
-      {id = "fadndhdgpmmaapbmfcknlfgcflmmmieb";} # frankerfacez
-      #{id = "jgejdcdoeeabklepnkdbglgccjpdgpmf";} # old twitter layout
-      {id = "kbmfpngjjgdllneeigpgjifpgocmfgmb";} # reddit enhancement suite
-    ];
-  };
+  #programs.chromium = {
+  #  enable = true;
+  #  package = pkgs.chromium;
+  #  commandLineArgs = [
+  #    "--enable-features=AcceleratedVideoEncoder,VaapiOnNvidiaGPUs,VaapiIgnoreDriverChecks,Vulkan,DefaultANGLEVulkan,VulkanFromANGLE"
+  #    "--enable-features=VaapiIgnoreDriverChecks,VaapiVideoDecoder,PlatformHEVCDecoderSupport"
+  #    "--enable-features=UseMultiPlaneFormatForHardwareVideo"
+  #    "--enable-zero-copy"
+  #    "--enable-logging=stderr"
+  #    "--ignore-gpu-blocklist"
+  #    "--ozone-platform-hint=auto"
+  #    "--ozone-platform=wayland"
+  #  ];
+  #  extensions = [
+  #    {id = "ddkjiahejlhfcafbddmgiahcphecmpfh";} # ublock origin lite
+  #    {id = "gmopgnhbhiniibbiilmbjilcmgaocokj";} # nekocap
+  #    {id = "nngceckbapebfimnlniiiahkandclblb";} # bitwarden
+  #    {id = "fadndhdgpmmaapbmfcknlfgcflmmmieb";} # frankerfacez
+  #    #{id = "jgejdcdoeeabklepnkdbglgccjpdgpmf";} # old twitter layout
+  #    {id = "kbmfpngjjgdllneeigpgjifpgocmfgmb";} # reddit enhancement suite
+  #  ];
+  #};
 }

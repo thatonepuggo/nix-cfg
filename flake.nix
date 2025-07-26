@@ -41,8 +41,6 @@
     nixcord = {
       url = "github:kaylorben/nixcord";
     };
-
-    in-nix.url = "github:viperML/in-nix";
   };
 
   outputs = inputs:
