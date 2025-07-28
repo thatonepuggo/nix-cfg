@@ -5,5 +5,6 @@
     ./themes.nix
     ./nixcord.nix
     ./defaultApps.nix
+    ./vim.nix
   ];
 }

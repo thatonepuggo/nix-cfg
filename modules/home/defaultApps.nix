@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }: let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
   inherit (lib) mkEnableOption mkOption mkIf;
   cfg = config.myHome.defaultApps;
 in {
@@ -16,12 +21,14 @@ in {
   };
 
   config = mkIf cfg.enable {
-    xdg.mimeApps.defaultApplications = {
-      "application/pdf" = ["chromium.desktop"];
-      "image/*" = ["gwenview.desktop"];
-      "video/png" = ["mpv.desktop"];
-      "video/jpg" = ["mpv.desktop"];
-      "video/*" = ["mpv.desktop"];
-    } // cfg.extraDefaultApps;
+    xdg.mimeApps.defaultApplications =
+      {
+        "application/pdf" = ["chromium.desktop"];
+        "image/*" = ["gwenview.desktop"];
+        "video/png" = ["mpv.desktop"];
+        "video/jpg" = ["mpv.desktop"];
+        "video/*" = ["mpv.desktop"];
+      }
+      // cfg.extraDefaultApps;
   };
 }
