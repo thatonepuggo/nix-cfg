@@ -84,7 +84,13 @@ username: hostName: {
     windowManager = "niri";
 
     nixcord.enable = true;
-    defaultApps.enable = true;
+    defaultApps = {
+      enable = true;
+      extraDefaultApps = {
+        "x-scheme-handler/roblox" = ["org.vinegarhq.Sober.desktop"];
+        "x-scheme-handler/roblox-player" = ["org.vinegarhq.Sober.desktop"];
+      };
+    };
     vim.enable = true;
 
     # todo: make this an attrset idkwtf i was doing

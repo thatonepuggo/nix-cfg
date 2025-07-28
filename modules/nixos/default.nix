@@ -1,1 +1,5 @@
-{}
+{
+  imports = [
+    ./flatpak.nix
+  ];
+}

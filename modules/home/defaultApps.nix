@@ -21,14 +21,18 @@ in {
   };
 
   config = mkIf cfg.enable {
-    xdg.mimeApps.defaultApplications =
-      {
+    xdg.mimeApps = let
+      defaultApps = {
         "application/pdf" = ["chromium.desktop"];
         "image/*" = ["gwenview.desktop"];
         "video/png" = ["mpv.desktop"];
         "video/jpg" = ["mpv.desktop"];
         "video/*" = ["mpv.desktop"];
-      }
-      // cfg.extraDefaultApps;
+      } // cfg.extraDefaultApps;
+    in {
+      enable = true;
+      associations.added = defaultApps;
+      defaultApplications = defaultApps;
+    };
   };
 }

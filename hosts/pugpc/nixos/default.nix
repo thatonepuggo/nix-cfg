@@ -80,6 +80,15 @@ hostName: {
     package = pkgs.niri-unstable;
   };
 
+  myNixOS = {
+    flatpak = {
+      enable = true;
+      packages = [
+        "org.vinegarhq.Sober"
+      ];
+    };
+  };
+
   # first version installed on this system
   system.stateVersion = "25.05";
 }
