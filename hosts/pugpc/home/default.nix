@@ -68,6 +68,7 @@ username: hostName: {
       doomrunner
       gzdoom
       luanti
+      vinegar
     ];
 
     # do not edit
