@@ -68,7 +68,6 @@ username: hostName: {
       doomrunner
       gzdoom
       luanti
-      vinegar
     ];
 
     # do not edit
@@ -84,7 +83,6 @@ username: hostName: {
   myHome = {
     windowManager = "niri";
 
-    nixcord.enable = true;
     defaultApps = {
       enable = true;
       extraDefaultApps = {
@@ -92,7 +90,9 @@ username: hostName: {
         "x-scheme-handler/roblox-player" = ["org.vinegarhq.Sober.desktop"];
       };
     };
+    nixcord.enable = true;
     vim.enable = true;
+    vinegar.enable = true;
 
     # todo: make this an attrset idkwtf i was doing
     monitors = [

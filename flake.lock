@@ -441,6 +441,21 @@
         "type": "github"
       }
     },
+    "nix-flatpak": {
+      "locked": {
+        "lastModified": 1751276396,
+        "narHash": "sha256-oOYrnKStMsOXST+wKnzuSZ49h8Dr1Q3mIn2f5Kb5GAw=",
+        "owner": "gmodena",
+        "repo": "nix-flatpak",
+        "rev": "59adb9ad1cbd915494fc35cd0e0a9d582ca9de74",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gmodena",
+        "repo": "nix-flatpak",
+        "type": "github"
+      }
+    },
     "nix-your-shell": {
       "inputs": {
         "advisory-db": "advisory-db",
@@ -656,6 +671,7 @@
         "home-manager": "home-manager",
         "lix-module": "lix-module",
         "niri": "niri",
+        "nix-flatpak": "nix-flatpak",
         "nix-your-shell": "nix-your-shell",
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs_2",

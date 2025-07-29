@@ -46,6 +46,7 @@ in rec {
 
         inputs.stylix.nixosModules.stylix
         inputs.niri.nixosModules.niri
+        inputs.nix-flatpak.nixosModules.nix-flatpak
 
         inputs.home-manager.nixosModules.home-manager
         {

@@ -80,12 +80,36 @@ hostName: {
     package = pkgs.niri-unstable;
   };
 
-  myNixOS = {
-    flatpak = {
-      enable = true;
-      packages = [
-        "org.vinegarhq.Sober"
-      ];
+  services.flatpak = {
+    enable = true;
+    packages = [
+      "org.vinegarhq.Sober"
+    ];
+    overrides = {
+      global = {
+        # Force Wayland by default
+        Context.sockets = ["wayland" "!x11" "!fallback-x11"];
+
+        Environment = {
+          # Fix un-themed cursor in some Wayland apps
+          XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
+
+          # Force correct theme for some GTK apps
+          GTK_THEME = "Adwaita:dark";
+        };
+      };
+
+      "org.vinegarhq.Sober" = {
+        Context.filesystems = [
+          "xdg-run/pipewire-0"
+          "xdg-run/app/com.discordapp.Discord:create"
+          "xdg-run/discord-ipc-0"
+        ];
+
+        Environment = {
+          SDL_AUDIO_DRIVER = "pipewire";
+        };
+      };
     };
   };
 

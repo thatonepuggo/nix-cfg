@@ -41,6 +41,8 @@
     nixcord = {
       url = "github:kaylorben/nixcord";
     };
+
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
   outputs = inputs:
