@@ -14,11 +14,17 @@ in {
   config.programs.vinegar = mkIf cfg.enable {
     enable = true;
     settings = {
-      dxvk = false;
-      renderer = "Vulkan";
+      studio = {
+        # https://github.com/vinegarhq/vinegar/issues/591
+        forced_version = "version-c98e1b5b4dd94b96";
 
-      # https://github.com/vinegarhq/vinegar/issues/591
-      studio.forced_version = "version-c98e1b5b4dd94b96";
+        # doesnt work i guess
+        webview = "";
+
+        # fix flickering
+        dxvk = false;
+        renderer = "Vulkan";
+      };
     };
   };
 }

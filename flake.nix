@@ -50,6 +50,8 @@
       devShells = eachSystem (pkgs: import ./shell.nix {inherit pkgs;});
       formatter = eachSystem (pkgs: pkgs.alejandra);
 
+      packages = eachSystem (pkgs: import ./pkgs {inherit pkgs;});
+
       nixosConfigurations = mkSystems {
         pugpc = {
           system = "x86_64-linux";
