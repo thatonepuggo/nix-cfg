@@ -63,6 +63,8 @@ in {
           wait-for-frame-completion-in-pipewire = [];
         };
 
+        gestures.hot-corners.enable = false;
+
         prefer-no-csd = true;
 
         screenshot-path = "~/Pictures/Screenshots/Screenshot %Y-%m-%d %H-%M-%S.png";

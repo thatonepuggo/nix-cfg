@@ -44,6 +44,7 @@ in rec {
         outputs.nixosModules.default
         overlayModule
 
+        inputs.lix-module.nixosModules.default
         inputs.stylix.nixosModules.stylix
         inputs.niri.nixosModules.niri
         inputs.nix-flatpak.nixosModules.nix-flatpak
@@ -66,8 +67,6 @@ in rec {
             users = builtins.mapAttrs (username: cfg: import cfg username hostName) homeConfigs;
           };
         }
-
-        #inputs.lix-module.nixosModules.default
       ];
     };
 

@@ -56,7 +56,6 @@ username: hostName: {
       kdePackages.gwenview
       krita
       openutau
-      audacity
 
       # langs
       lua
