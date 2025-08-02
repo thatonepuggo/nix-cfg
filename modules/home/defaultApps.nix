@@ -23,13 +23,15 @@ in {
   config = mkIf cfg.enable {
     xdg.mimeApps = {
       enable = true;
-      defaultApplications = {
-        "application/pdf" = ["floorp.desktop"];
-        "image/*" = ["gwenview.desktop"];
-        "video/png" = ["mpv.desktop"];
-        "video/jpg" = ["mpv.desktop"];
-        "video/*" = ["mpv.desktop"];
-      } // cfg.extraDefaultApps;
+      defaultApplications =
+        {
+          "application/pdf" = ["floorp.desktop"];
+          "image/*" = ["gwenview.desktop"];
+          "video/png" = ["mpv.desktop"];
+          "video/jpg" = ["mpv.desktop"];
+          "video/*" = ["mpv.desktop"];
+        }
+        // cfg.extraDefaultApps;
     };
   };
 }

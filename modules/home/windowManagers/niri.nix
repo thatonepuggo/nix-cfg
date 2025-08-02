@@ -63,6 +63,24 @@ in {
           wait-for-frame-completion-in-pipewire = [];
         };
 
+        window-rules = [
+          {
+            matches = [
+              {
+                app-id = "steam";
+                title = "^notificationtoasts_\\d+_desktop$";
+              }
+            ];
+            default-floating-position = {
+              x = 0;
+              y = 0;
+              relative-to = "bottom-right";
+            };
+            border.enable = false;
+            open-focused = false;
+          }
+        ];
+
         gestures.hot-corners.enable = false;
 
         prefer-no-csd = true;
