@@ -59,10 +59,6 @@ in {
           DISPLAY = ":0";
         };
 
-        debug = {
-          wait-for-frame-completion-in-pipewire = [];
-        };
-
         window-rules = [
           {
             matches = [
