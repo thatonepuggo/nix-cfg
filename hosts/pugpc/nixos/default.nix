@@ -85,6 +85,7 @@ hostName: {
     packages = [
       "org.vinegarhq.Sober"
     ];
+    update.onActivation = true;
     overrides = {
       global = {
         # Force Wayland by default
