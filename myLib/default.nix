@@ -76,6 +76,7 @@ in rec {
         mkSystem (conf // {inherit hostName;})
     )
     confs;
+
   ## utils ##
 
   pow = base: exponent: builtins.foldl' (x: _: x * base) 1 (builtins.genList (x: x) exponent);

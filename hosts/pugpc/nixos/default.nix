@@ -114,6 +114,10 @@ hostName: {
     };
   };
 
+  myNixOS = {
+    swaylock.enable = true;
+  };
+
   # first version installed on this system
   system.stateVersion = "25.05";
 }
