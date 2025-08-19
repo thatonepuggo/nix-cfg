@@ -151,7 +151,7 @@ in {
 
         bind =
           [
-            "$mod, return, exec, ghostty"
+            "$mod, return, exec, wezterm"
             "$mod, C, killactive,"
             "$mod, R, exec, rofi -show drun"
             "$mod CTRL, M, exec, hyprctl dispatch exit"

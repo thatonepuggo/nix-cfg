@@ -5,10 +5,8 @@ username: hostName: {
   ...
 }: {
   imports = [
-    ./browser.nix
     ./dunst.nix
     ./eww
-    ./ghostty.nix
     ./git.nix
     ./obs.nix
     ./rofi.nix
@@ -51,9 +49,9 @@ username: hostName: {
         ];
       })
       filezilla
-      kdePackages.dolphin
-      kdePackages.ark
-      kdePackages.gwenview
+      file-roller # archive manager
+      eog # image viewer
+      nautilus # file manager
       krita
       openutau
 
@@ -92,6 +90,8 @@ username: hostName: {
     nixcord.enable = true;
     vim.enable = true;
     vinegar.enable = true;
+    terminal.enable = true;
+    browser.enable = true;
 
     # todo: make this an attrset idkwtf i was doing
     monitors = [

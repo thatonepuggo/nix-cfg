@@ -25,8 +25,15 @@ in {
       enable = true;
       defaultApplications =
         {
+          "inode/directory" = ["org.gnome.Nautilus.desktop"];
+
           "application/pdf" = ["floorp.desktop"];
-          "image/*" = ["gwenview.desktop"];
+
+          "text/html" = ["floorp.desktop"];
+          "text/*" = ["nvim.desktop"];
+
+          "image/*" = ["org.gnome.eog.desktop"];
+
           "video/png" = ["mpv.desktop"];
           "video/jpg" = ["mpv.desktop"];
           "video/*" = ["mpv.desktop"];

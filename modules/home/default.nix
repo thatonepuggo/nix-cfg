@@ -1,11 +1,13 @@
 {
   imports = [
-    ./defaultApps.nix
     ./monitors
+    ./windowManagers
+    ./defaultApps.nix
     ./nixcord.nix
     ./themes.nix
     ./vim.nix
     ./vinegar.nix
-    ./windowManagers
+    ./terminal.nix
+    ./browser.nix
   ];
 }

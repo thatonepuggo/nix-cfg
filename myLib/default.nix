@@ -60,7 +60,7 @@ in rec {
             sharedModules = [
               inputs.spicetify-nix.homeManagerModules.spicetify
               inputs.nixcord.homeModules.nixcord
-              inputs.nixvim.homeManagerModules.nixvim
+              inputs.nixvim.homeModules.nixvim
               outputs.homeManagerModules.default
             ];
             backupFileExtension = "bak";
