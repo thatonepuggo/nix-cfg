@@ -1,7 +1,8 @@
-hostName: {
+{
   config,
   pkgs,
   inputs,
+  hostname,
   ...
 }: {
   imports = [
@@ -21,10 +22,9 @@ hostName: {
   ];
 
   # Enable networking
-  networking = {
-    networkmanager.enable = true;
-    inherit hostName;
-  };
+  networking.networkmanager.enable = true;
+
+  networking.hostName = hostname;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

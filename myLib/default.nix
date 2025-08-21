@@ -30,17 +30,17 @@ in rec {
 
   mkSystem = {
     system,
-    hostName,
+    hostname,
     nixosConfig,
     homeConfigs,
   }:
-    inputs.nixpkgs.lib.nixosSystem {
+    nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = {
-        inherit inputs outputs myLib hostName;
+        inherit inputs outputs myLib hostname;
       };
       modules = [
-        (import nixosConfig hostName)
+        nixosConfig
         outputs.nixosModules.default
         overlayModule
 
@@ -55,7 +55,7 @@ in rec {
             useGlobalPkgs = true;
             useUserPackages = true;
             extraSpecialArgs = {
-              inherit inputs outputs myLib;
+              inherit inputs outputs myLib hostname;
             };
             sharedModules = [
               inputs.spicetify-nix.homeManagerModules.spicetify
@@ -64,7 +64,7 @@ in rec {
               outputs.homeManagerModules.default
             ];
             backupFileExtension = "bak";
-            users = builtins.mapAttrs (username: cfg: import cfg username hostName) homeConfigs;
+            users = mkHomeUsers homeConfigs;
           };
         }
       ];
@@ -72,8 +72,17 @@ in rec {
 
   mkSystems = confs @ {...}:
     builtins.mapAttrs (
-      hostName: conf:
-        mkSystem (conf // {inherit hostName;})
+      hostname: conf:
+        mkSystem (conf // {inherit hostname;})
+    )
+    confs;
+
+  mkHomeUsers = confs @ {...}:
+    builtins.mapAttrs (
+      username: cfg: {
+        imports = [ cfg ];
+        _module.args.username = username;
+      }
     )
     confs;
 

@@ -1,7 +1,9 @@
-username: hostName: {
+{
   lib,
   pkgs,
   config,
+  username,
+  hostname,
   ...
 }: {
   imports = [
