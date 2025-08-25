@@ -17,6 +17,7 @@ in {
       enable = true;
       vesktop.enable = true;
       discord.enable = false;
+
       quickCss = ''
         .theme-light, .theme-dark, .theme-darker, .theme-midnight, .visual-refresh {
           --background-message-highlight: var(--base02) !important;

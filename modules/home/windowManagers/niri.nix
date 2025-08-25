@@ -27,7 +27,14 @@ in {
       ];
     };
 
-    home.sessionVariables.NIXOS_OZONE_WL = "1";
+    home.sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      GDK_BACKEND = "wayland";
+      QT_QPA_PLATFORM = "wayland";
+      SDL_VIDEODRIVER = "wayland";
+      CLUTTER_BACKEND = "wayland";
+      XDG_SESSION_TYPE = "wayland";
+    };
 
     programs.niri = {
       settings = {

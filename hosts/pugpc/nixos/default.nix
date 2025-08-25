@@ -29,6 +29,8 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  services.logmein-hamachi.enable = true;
+
   # enable flakes
   nix.settings.experimental-features = [
     "nix-command"
