@@ -26,8 +26,8 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark.yaml";
 
     cursor = {
-      package = pkgs.adwaita-icon-theme;
-      name = "Adwaita";
+      package = pkgs.yaru-theme;
+      name = "Yaru";
       size = 24;
     };
 
