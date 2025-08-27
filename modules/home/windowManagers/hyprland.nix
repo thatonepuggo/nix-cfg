@@ -38,7 +38,7 @@ in {
           "systemctl --user start hyprpolkitagent"
 
           # background
-          "${pkgs.swww}/bin/swww-daemon & ${pkgs.swww}/bin/swww img ${cfg.wallpaper}"
+          "${pkgs.swww}/bin/swww-daemon & ${pkgs.swww}/bin/swww img ${config.stylix.image}"
 
           # notifications
           "dunst"

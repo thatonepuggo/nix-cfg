@@ -15,7 +15,6 @@
     ./locale.nix
     ./env.nix
     ./nvidia.nix
-    ./wayland.nix
     ./sound.nix
     ./steam.nix
     ./stylix.nix
@@ -29,7 +28,7 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  services.logmein-hamachi.enable = true;
+  services.xserver.enable = true;
 
   # enable flakes
   nix.settings.experimental-features = [
@@ -118,6 +117,7 @@
 
   myNixOS = {
     swaylock.enable = true;
+    sddm.enable = true;
   };
 
   # first version installed on this system

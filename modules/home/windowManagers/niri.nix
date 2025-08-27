@@ -44,7 +44,7 @@ in {
             "${pkgs.xwayland-satellite}/bin/xwayland-satellite"
 
             # background
-            "${pkgs.swww}/bin/swww-daemon & sleep 0.1 && ${pkgs.swww}/bin/swww img ${cfg.wallpaper}"
+            "${pkgs.swww}/bin/swww-daemon & sleep 0.1 && ${pkgs.swww}/bin/swww img ${config.stylix.image}"
 
             # notifications
             "dunst"
