@@ -48,8 +48,12 @@
       size = 24;
     };
 
-    targets.chromium.enable = true;
-    targets.grub.enable = true;
+    icons = {
+      enable = true;
+      package = pkgs.adwaita-icon-theme;
+      light = "Adwaita";
+      dark = "Adwaita";
+    };
 
     fonts = {
       serif = {
@@ -79,5 +83,8 @@
         popups = 10;
       };
     };
+
+    targets.chromium.enable = true;
+    targets.grub.enable = true;
   };
 }
