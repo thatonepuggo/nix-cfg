@@ -11,10 +11,6 @@
       "${XDG_BIN_HOME}"
     ];
 
-    # nix
-    NIXOS_CONFIG_DIR = "$XDG_CONFIG_HOME/nixos";
-    NIXOS_CONFIG = "$XDG_CONFIG_HOME/nixos/configuration.nix";
-
     # fix libadwaita apps crashing
     GSK_RENDERER = "ngl";
   };
