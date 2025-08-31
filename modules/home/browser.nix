@@ -22,15 +22,17 @@ in {
         extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
           nekocap
           bitwarden
-          (frankerfacez.override {meta.license = lib.licenses.asl20;})
+          seventv
           sponsorblock
           stylus
           ublock-origin
           violentmonkey
           reddit-enhancement-suite
+          youtube-shorts-block
         ];
 
         bookmarks = {
+          force = true;
           settings = let
             mkBookmark = name: url: {inherit name url;};
             mkKeyword = name: keyword: url: {inherit name keyword url;};
@@ -41,7 +43,8 @@ in {
             };
           in [
             (mkToolbar [
-              (mkBookmark "YouTube" "https://youtube.com")
+              (mkBookmark "YouTube" "https://youtube.com/")
+              (mkBookmark "Twitter" "https://x.com/")
 
               (mkFolder "nix resources" [
                 (mkKeyword
@@ -57,73 +60,31 @@ in {
               ])
             ])
           ];
-          force = true;
         };
 
         search = {
+          force = true;
+          default = "ddg@search.mozilla.orgdefault";
+
           engines = {
             "Nix Packages" = {
-              urls = [
-                {
-                  template = "https://search.nixos.org/packages";
-                  params = [
-                    {
-                      name = "type";
-                      value = "packages";
-                    }
-                    {
-                      name = "query";
-                      value = "{searchTerms}";
-                    }
-                  ];
-                }
-              ];
-
+              urls = [{template = "https://search.nixos.org/packages?channel=unstable&query={searchTerms}";}];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = ["@np"];
             };
 
             "Nix Options" = {
-              urls = [
-                {
-                  template = "https://search.nixos.org/options";
-                  params = [
-                    {
-                      name = "type";
-                      value = "packages";
-                    }
-                    {
-                      name = "query";
-                      value = "{searchTerms}";
-                    }
-                  ];
-                }
-              ];
-
+              urls = [{template = "https://search.nixos.org/options?channel=unstable&query={searchTerms}";}];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = ["@no"];
             };
 
             "Home Manager Options" = {
-              urls = [
-                {
-                  template = "https://home-manager-options.extranix.com/";
-                  params = [
-                    {
-                      name = "query";
-                      value = "{searchTerms}";
-                    }
-                  ];
-                }
-              ];
-
-              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = ["@hm"];
+              urls = [{template = "https://home-manager-options.extranix.com/?query={searchTerms}";}];
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             };
           };
-
-          default = "ddg";
-          force = true;
         };
 
         settings = let
