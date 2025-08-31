@@ -33,6 +33,7 @@
       cloc
       ffmpeg
       imagemagick
+      xdelta
 
       # gui
       pavucontrol
@@ -56,12 +57,6 @@
       nautilus # file manager
       krita
       openutau
-
-      # langs
-      lua
-      gcc
-      python3
-      go
 
       # games
       doomrunner
