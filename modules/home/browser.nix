@@ -94,6 +94,7 @@ in {
           "app.normandy.first_run" = false;
           "browser.aboutConfig.showWarning" = false;
           "browser.tabs.warnOnClose" = false;
+          "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
 
           # newtab
           "browser.newtabpage.activity-stream.feeds.topsites" = false;
